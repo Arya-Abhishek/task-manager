@@ -1,12 +1,20 @@
 // CRUD create read update delete
 
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+// const mongodb = require('mongodb')
+// const MongoClient = mongodb.MongoClient
+// const ObjectID = mongodb.ObjectID
+
+//using destructuring 
+const { MongoClient, ObjectID } = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.1:27017'
 const databaseName = 'task-manager'
 
-MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
+const id = new ObjectID()
+console.log(id)
+console.log(id.getTimestamp())
+
+MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: true }, (error, client) => {
     if (error) {
         return console.log('Unable to connect to the database!')
     }
@@ -14,7 +22,8 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     const db = client.db(databaseName)
 
     // db.collection('users').insertOne({
-    //     name: 'Abhishek',
+    //     //_id: id,
+    //     name: 'Rahul',
     //     age: 27
     // }, (error, result) => {
     //     if (error) {
@@ -41,22 +50,22 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     //     console.log(result.ops)
     // })
 
-    db.collection('users-2').insertMany([
-        {
-            task: 'need to finish control systems today first root locus',
-            isCompleted: false
-        }, {
-            task: 'After that study for LIC viva tomorrow',
-            isCompleted: false
-        }, {
-            task: 'complete day-12 of coding challenge to make it a habit',
-            isCompleted: true
-        }
-    ], (error, result) => {
-        if (error) {
-            return console.log('Unable to insert new user documents!')
-        }
+    // db.collection('users-2').insertMany([
+    //     {
+    //         task: 'need to finish control systems today first root locus',
+    //         isCompleted: false
+    //     }, {
+    //         task: 'After that study for LIC viva tomorrow',
+    //         isCompleted: false
+    //     }, {
+    //         task: 'complete day-12 of coding challenge to make it a habit',
+    //         isCompleted: true
+    //     }
+    // ], (error, result) => {
+    //     if (error) {
+    //         return console.log('Unable to insert new user documents!')
+    //     }
 
-        console.log(result.ops)
-    })
+    //     console.log(result.ops)
+    // })
 })
