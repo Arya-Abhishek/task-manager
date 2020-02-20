@@ -21,17 +21,35 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: 
 
     const db = client.db(databaseName)
 
-    db.collection('users-2').updateMany({
-        isCompleted: false
-    }, {
-        $set: {
-            isCompleted: true
-        }
+    db.collection('users-2').deleteMany({
+        task: 'need to finish control systems today first root locus',
+        task: 'After that study for LIC viva tomorrow'
     }).then((result) => {
-        console.log(result)
+        console.log(result.deletedCount)
     }).catch((error) => {
         console.log(error)
     })
+
+    // db.collection('users').deleteMany({
+    //     age: 21
+    // }).then((result) => {
+    //     console.log(result.deletedCount)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
+
+        // Update one and many
+    // db.collection('users-2').updateMany({
+    //     isCompleted: false
+    // }, {
+    //     $set: {
+    //         isCompleted: true
+    //     }
+    // }).then((result) => {
+    //     console.log(result)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
 
     // db.collection('users').updateOne({ 
     //     _id: new ObjectID("5e4b81a9b5e15123c87a9fc2")
