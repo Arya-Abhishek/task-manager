@@ -1,55 +1,12 @@
 const mongoose = require('mongoose')
-const validator = require('validator')
+// const validator = require('validator')
 
 mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 })
-
-// //model created 
-// const User = mongoose.model('User', {
-//     name: {
-//         type: String,
-//         reqired: true,
-
-//         trim: true
-//     },
-//     password: {
-//         type: String,
-//         trim: true,
-//         required: true,
-//         validate(value) {
-//             if (!validator.isLength(value, { min: 6 })) { 
-//                 throw new Error('provide the length of password grater than 6')
-//             }
-
-//             if (validator.contains(value, 'password')) {
-//                 throw new Error('password must not contain string password!')
-//             }
-//         }
-//     },
-//     email: {
-//         type: String,
-//         required: true,
-//         trim: true,
-//         lowercase: true,
-//         validate(value) {
-//             if (!validator.isEmail(value)) {
-//                 throw new Error('Email is invalid!')
-//             }
-//         }
-//     },
-//     age: {
-//         type: Number,
-//         dafault: 0,
-//         validate(value) {
-//             if (value < 0) {
-//                 throw new Error('Age must be a positive number!')
-//             } 
-//         }
-//     }
-// })
 
 // // instance created
 // const me = new User({
@@ -67,28 +24,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
 //     console.log('Error!', error)
 // })
 
-//Another model creation: Tasks
-const Tasks = mongoose.model('Tasks', {
-    description: {
-        type: String,
-        required: true,
-        trim: true
-    }, 
-    completed: {
-        type: Boolean,
-        default: false
-    }
-})
 
-//instance creation for saving it to database
-const task_1 = new Tasks({
-    description: '    wash the car',
-    completed: true
+// //instance creation for saving it to database
+// const task_1 = new Tasks({
+//     description: '    wash the car',
+//     completed: true
     
-})
+// })
 
-task_1.save().then(() => {
-    console.log(task_1)
-}).catch((error) => {
-    console.log('Error!', error)
-})
+// task_1.save().then(() => {
+//     console.log(task_1)
+// }).catch((error) => {
+//     console.log('Error!', error)
+// })
