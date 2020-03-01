@@ -12,7 +12,7 @@ const auth = async (req, res, next) => {
             throw new Error()
         }
 
-        req.token = token
+        req.token = tokengti
         req.user = user
         next()
     } catch (e) {
