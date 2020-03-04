@@ -1,7 +1,5 @@
 const express = require('express')
 require('./db/mongoose')
-const User = require('./models/user')
-const Task = require('./models/task')
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
 
@@ -10,18 +8,14 @@ const port = process.env.PORT || 3000
 
 // app.use((req, res, next) => {
 //     if (req.method === 'GET') {
-//         res.send('GET requests are disabled!')
+//         res.send('GET requests are disabled')
 //     } else {
 //         next()
 //     }
 // })
 
-// Adding new middleware indicating site under maintenance
-
 // app.use((req, res, next) => {
-    
-//     res.status(503).send('site under maintenance, try back soon!')
-    
+//     res.status(503).send('Site is currently down. Check back soon!')
 // })
 
 app.use(express.json())
@@ -29,5 +23,26 @@ app.use(userRouter)
 app.use(taskRouter)
 
 app.listen(port, () => {
-    console.log('server is up on port ' + port)
+    console.log('Server is up on port ' + port)
 })
+
+const Task = require('./models/task')
+const User = require('./models/user')
+
+const main = async () => {
+    // console.log('Hi I am form index.js')
+
+    // const task = await Task.findById('5e5f67a1f0191642cf242d7c')
+    // await task.populate('owner').execPopulate()
+    // console.log(task.owner)
+
+    // const user = await User.findById(task.owner)
+    // console.log(user)
+    // Now this is the way we can fetch our owner who created the task but we wont do it this way offcourse
+
+    const user = await User.findById('5e5f6771f0191642cf242d79')
+    await user.populate('tasks').execPopulate()
+    console.log(user.tasks)
+}
+   
+main()
