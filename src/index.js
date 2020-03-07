@@ -40,9 +40,9 @@ const main = async () => {
     // console.log(user)
     // Now this is the way we can fetch our owner who created the task but we wont do it this way offcourse
 
-    const user = await User.findById('5e61596b15b2034cd0a4d04c')
-    await user.populate('tasks').execPopulate()
-    console.log(user.tasks)
+    // const user = await User.findById('5e61596b15b2034cd0a4d04c')
+    // await user.populate('tasks').execPopulate()
+    // console.log(user.tasks)
 }
    
 main()
